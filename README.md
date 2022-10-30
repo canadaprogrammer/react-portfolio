@@ -65,3 +65,52 @@
         -moz-osx-font-smoothing: grayscale;
       }
       ```
+
+## Create Routes
+
+- Add BrowserRouter from react-router-dom to /src/index.js
+
+  - ```js
+    import { BrowserRouter } from 'react-router-dom'
+
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </React.StrictMode>
+    )
+    ```
+
+- Create Layout component, /src/components/Layout/index.js and /src/components/Layout/index.scss
+
+  - ```js
+    import './index.scss'
+
+    const Layout = () => {
+      return <>Hellow</>
+    }
+
+    export default Layout
+    ```
+
+- Add Routes from react-router-dom to /src/App.js
+
+  - ```js
+    import './App.scss'
+    import { Routes, Route } from 'react-router-dom'
+    import Layout from './components/Layout'
+
+    function App() {
+      return (
+        <>
+          <Routes>
+            <Route path="/" element={<Layout />} />
+          </Routes>
+        </>
+      )
+    }
+
+    export default App
+    ```
