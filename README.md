@@ -29,8 +29,6 @@
 
 - Define Global Styles
 
-  - Create /src/assets/images
-    - logo_sub.png, logo-lines-2.svg, logo-lines.svg, logo-s.png, logo1.png, logo2.png, logo3.png, logo4.png, logopreload.png
   - Change App.css to App.scss in /src/App.js
   - Rename /src/App.css to /src/App.scss
 
@@ -65,6 +63,11 @@
         -moz-osx-font-smoothing: grayscale;
       }
       ```
+
+- Change logo and title
+  - Remove logo and favicon from /public/
+  - Add favicon.ico to /public/
+  - Change the title and description on /public/index.html
 
 ## Create Routes
 
@@ -113,4 +116,200 @@
     }
 
     export default App
+    ```
+
+## Build Sidebar
+
+- Create /src/components/Sidebar/index.js, and /src/components/Sidebar/index.scss
+
+  - ```js
+    import { Link, NavLink } from 'react-router-dom'
+    import './index.scss'
+    import Logo from '../../assets/images/logo.png'
+    import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+    import {
+      faEnvelope,
+      faHome,
+      faUser,
+    } from '@fortawesome/free-solid-svg-icons'
+    import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
+    const Sidebar = () => {
+      return (
+        <div className="nav-bar">
+          <Link className="logo" to="/">
+            <img src={Logo} alt="logo" />
+          </Link>
+          <nav>
+            <NavLink exact="true" activeclassname="active" to="/">
+              <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
+            </NavLink>
+            <NavLink
+              exact="true"
+              activeclassname="active"
+              className="about-link"
+              to="/about"
+            >
+              <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
+            </NavLink>
+            <NavLink
+              exact="true"
+              activeclassname="active"
+              className="contact-link"
+              to="/contact"
+            >
+              <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
+            </NavLink>
+          </nav>
+          <ul>
+            <li>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://github.com/canadaprogrammer"
+              >
+                <FontAwesomeIcon icon={faGithub} color="#4d4d4e" />
+              </a>
+            </li>
+            <li>
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.linkedin.com/in/jungjin-park-b3a67b163/"
+              >
+                <FontAwesomeIcon icon={faLinkedin} color="#4d4d4e" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      )
+    }
+
+    export default Sidebar
+    ```
+
+  - ```scss
+    $purple: rgb(57, 0, 122);
+    $purple-1: rgb(40, 0, 87);
+    $purple-2: rgb(24, 0, 51);
+    $blue-dark: rgb(0, 68, 179);
+    $blue: rgb(0, 113, 211);
+    $blue-light: rgb(0, 153, 221);
+    $mint-blue: rgb(0, 190, 214);
+    $mint: rgb(0, 226, 200);
+
+    .nav-bar {
+      background: #181818;
+      width: 60px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 3;
+      min-height: 500px;
+      .logo {
+        display: block;
+        padding: 8px 0;
+        img {
+          display: block;
+          margin: 8px auto;
+          width: 50px;
+          height: auto;
+          &.sub-logo {
+            width: 50px;
+          }
+        }
+      }
+      nav {
+        display: block;
+        text-align: center;
+        position: absolute;
+        height: 210px;
+        top: 50%;
+        margin-top: -120px;
+        width: 100%;
+        a {
+          font-size: 22px;
+          color: #4d4d4e;
+          display: block;
+          line-height: 51px;
+          height: 51px;
+          position: relative;
+          text-decoration: none;
+          i {
+            transition: all 0.4s ease-in-out;
+          }
+          &:hover {
+            color: $mint;
+            svg {
+              opacity: 0;
+            }
+            &::after {
+              opacity: 1;
+            }
+          }
+          &:after {
+            content: '';
+            font-size: 9px;
+            letter-spacing: 2px;
+            position: absolute;
+            bottom: 0;
+            display: block;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            transition: all 0.4s ease-out;
+          }
+          &:first-child {
+            &::after {
+              content: 'HOME';
+            }
+          }
+          &:nth-child(2) {
+            &::after {
+              content: 'ABOUT';
+            }
+          }
+          &:last-child {
+            &::after {
+              content: 'CONTACT';
+            }
+          }
+          &.active {
+            svg {
+              color: $mint;
+            }
+          }
+        }
+      }
+      ul {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        display: block;
+        padding: 0;
+        list-style: none;
+        text-align: center;
+        margin: 0;
+        li {
+          a {
+            padding: 7px 0;
+            display: block;
+            font-size: 15px;
+            line-height: 16px;
+            &:hover svg {
+              color: $mint;
+            }
+          }
+        }
+      }
+    }
+    ```
+
+- On /Layout/index.js
+
+  - ```js
+    import Sidebar from '../Sidebar'
+
+    const Layout = () => {
+      return <><Sidebar /></>
     ```
