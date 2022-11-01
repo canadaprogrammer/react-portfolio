@@ -1,0 +1,54 @@
+$purple: rgb(57, 0, 122);
+$purple-1: rgb(40, 0, 87);
+$purple-2: rgb(24, 0, 51);
+$blue-dark: rgb(0, 68, 179);
+$blue: rgb(0, 113, 211);
+$blue-light: rgb(0, 153, 221);
+$mint-blue: rgb(0, 190, 214);
+$mint: rgb(0, 226, 200);
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+.home-page {
+  .text-zone {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    max-height: 90%;
+  }
+  h1 {
+    color: #fff;
+    font-size: 53px;
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+  }
+  h2 {
+    color: #8d8d8d;
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: sans-serif;
+    letter-spacing: 3px;
+    animation: fadeIn 1s 1.8s backwards;
+  }
+  .flat-button {
+    color: $mint;
+    font-size: 22px;
+    font-weight: 400;
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid $mint;
+    margin-top: 25px;
+    float: left;
+    animation: fadeIn 1s 1.8s backwards;
+    white-space: nowrap;
+    &:hover {
+      background: $mint;
+      color: $purple;
+    }
+  }
+}

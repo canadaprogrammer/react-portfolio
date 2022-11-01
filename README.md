@@ -37,7 +37,7 @@
 
       @import 'animate.css';
 
-      @import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Roboto:wght@400;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
       input,
       textarea {
@@ -223,9 +223,9 @@
         display: block;
         text-align: center;
         position: absolute;
-        height: 210px;
+        height: auto;
         top: 50%;
-        margin-top: -120px;
+        transform: translateY(-50%);
         width: 100%;
         a {
           font-size: 22px;
@@ -310,6 +310,152 @@
   - ```js
     import Sidebar from '../Sidebar'
 
-    const Layout = () => {
+    ...
       return <><Sidebar /></>
+      ...
+    ```
+
+## Build Home Page
+
+- On /src/components/Layout/index.js
+
+  - ```js
+    import { Outlet } from 'react-router-dom'
+    import Sidebar from '../Sidebar'
+    import './index.scss'
+
+    const Layout = () => {
+      return (
+        <div className="App">
+          <Sidebar />
+          <div className="page">
+            <Outlet />
+          </div>
+        </div>
+      )
+    }
+
+    export default Layout
+    ```
+
+- On /src/components/Layout/index.scss
+
+  - ```scss
+    .page {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+    .container {
+      width: 100%;
+      will-change: contents;
+      height: 90%;
+      min-height: 566px;
+      position: absolute;
+      opacity: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0 auto;
+      z-index: 1;
+      transform-style: preserve-3d;
+      animation: fadeIn 1s forwards;
+      animation-delay: 1s;
+    }
+    ```
+
+- Create /src/components/Home/index.js and /src/components/Home/index.scss
+
+  - ```js
+    import { Link } from 'react-router-dom'
+    import './index.scss'
+
+    const Home = () => {
+      return (
+        <div className="container home-page">
+          <div className="text-zone">
+            <h1>
+              Hi, <br />
+              I'm Jungjin Park <br />
+              Web developer
+            </h1>
+            <h2>Full-Stack Developer</h2>
+            <Link to="/contact" className="flat-button">
+              Contact Me
+            </Link>
+          </div>
+        </div>
+      )
+    }
+
+    export default Home
+    ```
+
+  - ```scss
+    $purple: rgb(57, 0, 122);
+    $purple-1: rgb(40, 0, 87);
+    $purple-2: rgb(24, 0, 51);
+    $blue-dark: rgb(0, 68, 179);
+    $blue: rgb(0, 113, 211);
+    $blue-light: rgb(0, 153, 221);
+    $mint-blue: rgb(0, 190, 214);
+    $mint: rgb(0, 226, 200);
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+    .home-page {
+      .text-zone {
+        position: absolute;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40%;
+        max-height: 90%;
+      }
+      h1 {
+        color: #fff;
+        font-size: 53px;
+        margin: 0;
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+      }
+      h2 {
+        color: #8d8d8d;
+        margin-top: 20px;
+        font-weight: 400;
+        font-size: 18px;
+        font-family: sans-serif;
+        letter-spacing: 3px;
+        animation: fadeIn 1s 1.8s backwards;
+      }
+      .flat-button {
+        color: $mint;
+        font-size: 22px;
+        font-weight: 400;
+        font-family: sans-serif;
+        text-decoration: none;
+        padding: 10px 18px;
+        border: 1px solid $mint;
+        margin-top: 25px;
+        float: left;
+        animation: fadeIn 1s 1.8s backwards;
+        white-space: nowrap;
+        &:hover {
+          background: $mint;
+          color: $purple;
+        }
+      }
+    }
+    ```
+
+- On /src/App.js
+
+  - ```js
+    ...
+    import Home from './components/Home'
+
+    ...
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+            </Route>
+            ...
     ```

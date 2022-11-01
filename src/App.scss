@@ -1,27 +1,8 @@
-$primary-color: #ffd700;
-
 @import 'animate.css';
 
-// @font-face {
-//   font-family: 'Helvetica Neue';
-//   src: url('./assets/fonts/helvetica-neu.ttf') format('ttf');
-// }
-
-// @font-face {
-//   font-family: 'La Belle Aurore';
-//   src: url('./assets/fonts/LaBelleAurore.woff2'), format('woff2');
-// }
-
-@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Roboto:wght@400;700&display=swap');
-
-// @font-face {
-//   font-family: 'Coolvetica';
-//   src: url('./assets/fonts/CoolveticaRg-Regular.woff2'), format('woff2');
-// }
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
 input,
 textarea {
-  // font-family: 'Helvetica Neue';
   font-family: 'Roboto', sans-serif;
-  // font-family: 'La Belle Aurore', cursive;
 }
