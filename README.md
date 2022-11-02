@@ -120,6 +120,19 @@
 
 ## Build Sidebar
 
+- Create /src/default.scss
+
+  - ```scss
+    $purple: rgb(57, 0, 122);
+    $purple-1: rgb(40, 0, 87);
+    $purple-2: rgb(24, 0, 51);
+    $blue-dark: rgb(0, 68, 179);
+    $blue: rgb(0, 113, 211);
+    $blue-light: rgb(0, 153, 221);
+    $mint-blue: rgb(0, 190, 214);
+    $mint: rgb(0, 226, 200);
+    ```
+
 - Create /src/components/Sidebar/index.js, and /src/components/Sidebar/index.scss
 
   - ```js
@@ -189,14 +202,7 @@
     ```
 
   - ```scss
-    $purple: rgb(57, 0, 122);
-    $purple-1: rgb(40, 0, 87);
-    $purple-2: rgb(24, 0, 51);
-    $blue-dark: rgb(0, 68, 179);
-    $blue: rgb(0, 113, 211);
-    $blue-light: rgb(0, 153, 221);
-    $mint-blue: rgb(0, 190, 214);
-    $mint: rgb(0, 226, 200);
+    @import '../../default.scss';
 
     .nav-bar {
       background: #181818;
@@ -391,14 +397,7 @@
     ```
 
   - ```scss
-    $purple: rgb(57, 0, 122);
-    $purple-1: rgb(40, 0, 87);
-    $purple-2: rgb(24, 0, 51);
-    $blue-dark: rgb(0, 68, 179);
-    $blue: rgb(0, 113, 211);
-    $blue-light: rgb(0, 153, 221);
-    $mint-blue: rgb(0, 190, 214);
-    $mint: rgb(0, 226, 200);
+    @import '../../default.scss';
 
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
@@ -458,4 +457,111 @@
               <Route index element={<Home />} />
             </Route>
             ...
+    ```
+
+## Animated Letters
+
+- Create /src/components/AnimatedLetters/index.js and /src/components/AnimatedLetters/index.scss
+
+  - ```js
+    import './index.scss'
+
+    const AnimatedLetters = ({ letterClass, strArray, idx }) => {
+      return (
+        <span>
+          {strArray.map((char, i) => (
+            <span key={char + i} className={`${letterClass} _${i + idx}`}>
+              {char}
+            </span>
+          ))}
+        </span>
+      )
+    }
+
+    export default AnimatedLetters
+    ```
+
+  - ```scss
+    @import '../../default.scss';
+
+    .text-animate {
+      display: inline-block;
+      opacity: 0;
+      animation: bounceIn 1s 1s;
+      animation-fill-mode: forwards;
+      min-width: 10px;
+    }
+    .text-animate-hover {
+      display: inline-block;
+      animation-fill-mode: forwards;
+      min-width: 10px;
+      &:hover {
+        animation: rubberBand 1s;
+        color: $mint;
+      }
+    }
+    @for $i from 1 through 39 {
+      .text-animate._#{$i} {
+        animation-delay: #{$i / 10}s;
+      }
+    }
+    ```
+
+- On /src/components/Home/index.js
+
+  - ```js
+    import { useEffect, useState } from 'react'
+    import { Link } from 'react-router-dom'
+    import AnimatedLetters from '../AnimatedLetters'
+    import './index.scss'
+
+    const Home = () => {
+      const [letterClass, setLetterClass] = useState('text-animate')
+      const greetArray1 = ['H', 'i', ',']
+      const greetArray2 = ['I', "'", 'm']
+      const nameArray = ['J', 'u', 'n', 'g', 'j', 'i', 'n', '', 'P', 'a', 'r', 'k']
+      const jobArray = ['W', 'e', 'b', '', 'D', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r']
+      useEffect(() => {
+        setTimeout(() => {
+          setLetterClass('text-animate-hover')
+        }, 4000)
+      }, [])
+      return (
+        <div className="container home-page">
+          <div className="text-zone">
+            <h1>
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={greetArray1}
+                idx={9}
+              />
+              <br />
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={greetArray2}
+                idx={12}
+              />
+              &nbsp;
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={nameArray}
+                idx={15}
+              />
+              <br />
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={jobArray}
+                idx={27}
+              />
+            </h1>
+            <h2>Full-Stack Developer</h2>
+            <Link to="/contact" className="flat-button">
+              Contact Me
+            </Link>
+          </div>
+        </div>
+      )
+    }
+
+    export default Home
     ```

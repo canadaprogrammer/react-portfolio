@@ -1,13 +1,5 @@
-$purple: rgb(57, 0, 122);
-$purple-1: rgb(40, 0, 87);
-$purple-2: rgb(24, 0, 51);
-$blue-dark: rgb(0, 68, 179);
-$blue: rgb(0, 113, 211);
-$blue-light: rgb(0, 153, 221);
-$mint-blue: rgb(0, 190, 214);
-$mint: rgb(0, 226, 200);
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import '../../default.scss';
 
 .home-page {
   .text-zone {
