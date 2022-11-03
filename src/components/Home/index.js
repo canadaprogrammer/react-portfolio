@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
+import Initial from './Initial'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -61,6 +62,7 @@ const Home = () => {
           Contact Me
         </Link>
       </div>
+      <Initial />
     </div>
   )
 }
