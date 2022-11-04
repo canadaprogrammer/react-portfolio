@@ -1,7 +1,9 @@
-@import '../../../default.scss' .initial-container {
+@import '../../../default.scss';
+
+.initial-container {
   z-index: 0;
   width: 400px;
-  height: 600px;
+  height: 408.2px;
   position: absolute;
   top: 0;
   right: 15%;
@@ -13,7 +15,7 @@
     width: 100%;
     height: auto;
     bottom: 0;
-    transform: rotateZ(30deg) !important;
+    // transform: rotateZ(30deg) !important;
   }
   .solid-initial {
     position: absolute;
@@ -24,7 +26,7 @@
     margin: auto;
     width: 100%;
     opacity: 0;
-    transform: rotateZ(30deg);
+    // transform: rotateZ(30deg);
     z-index: 1;
   }
 }
