@@ -19,7 +19,7 @@
   }
   .solid-initial {
     position: absolute;
-    top: auto;
+    top: 3px;
     right: auto;
     bottom: auto;
     left: 0;
@@ -32,5 +32,5 @@
 }
 .svg-container {
   stroke: $mint;
-  stroke-width: 10;
+  stroke-width: 2;
 }
