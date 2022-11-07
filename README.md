@@ -592,7 +592,7 @@
           })
           .from(outlineInitialRef.current, {
             drawSVG: 0,
-            duration: 20,
+            duration: 10,
           })
 
         gsap.fromTo(
@@ -602,7 +602,7 @@
           },
           {
             opacity: 1,
-            delay: 20,
+            delay: 10,
             duration: 4,
           }
         )
@@ -652,7 +652,7 @@
     export default Initial
     ```
 
-    - ```scss
+  - ```scss
     @import '../../../default.scss';
 
     .initial-container {

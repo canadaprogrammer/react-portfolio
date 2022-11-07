@@ -18,10 +18,9 @@ const Initial = () => {
         opacity: 1,
       })
       .from(outlineInitialRef.current, {
-        drawSVG: 0,
-        duration: 20,
+        drawSVG: 1,
+        duration: 10,
       })
-
     gsap.fromTo(
       solidInitialRef.current,
       {
@@ -29,7 +28,7 @@ const Initial = () => {
       },
       {
         opacity: 1,
-        delay: 20,
+        delay: 10,
         duration: 4,
       }
     )
@@ -55,7 +54,7 @@ const Initial = () => {
         <g className="svg-container">
           <path
             fill="none"
-            stroke="#57C3B8"
+            stroke="#00e2c8"
             ref={outlineInitialRef}
             d="M37.313,283.882c-19.396-10.288-33.792-27.059-33.792-51.826
 	c0-30.45,23.955-52.78,56.029-52.78c9.689,0,19.102,3.329,26.293,9.149l1.066,0.544c12.624,5.636,22.024,17.339,22.024,32.441
