@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom'
 import AnimatedLetters from '../AnimatedLetters'
 import './index.scss'
 import Initial from './Initial'
+import InitialJ from '../../assets/images/initial-j-3.png'
+import InitialP from '../../assets/images/initial-p-3.png'
 
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
   const greetArray1 = ['H', 'i', ',']
   const greetArray2 = ['I', "'", 'm']
-  const nameArray = ['J', 'u', 'n', 'g', 'j', 'i', 'n', '', 'P', 'a', 'r', 'k']
+  const nameArray1 = ['u', 'n', 'g', 'j', 'i', 'n']
+  const nameArray2 = ['a', 'r', 'k']
   const jobArray = [
     'W',
     'e',
@@ -44,11 +47,17 @@ const Home = () => {
             strArray={greetArray2}
             idx={12}
           />
-          &nbsp;
+          <img src={InitialJ} alt="initial j" />
           <AnimatedLetters
             letterClass={letterClass}
-            strArray={nameArray}
+            strArray={nameArray1}
             idx={15}
+          />
+          <img src={InitialP} alt="initial p" />
+          <AnimatedLetters
+            letterClass={letterClass}
+            strArray={nameArray2}
+            idx={21}
           />
           <br />
           <AnimatedLetters

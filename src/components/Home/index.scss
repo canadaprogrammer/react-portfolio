@@ -1,6 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import '../../default.scss';
 
+@keyframes wiggle {
+  0%,
+  7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%,
+  100% {
+    transform: rotateZ(0);
+  }
+}
 .home-page {
   .text-zone {
     position: absolute;
@@ -16,6 +41,13 @@
     margin: 0;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
+    img {
+      margin-left: 2rem;
+      width: 44px;
+      height: auto;
+      animation: wiggle 2s linear infinite;
+      animation-delay: 1.4s;
+    }
   }
   h2 {
     color: #8d8d8d;

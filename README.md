@@ -514,12 +514,16 @@
     import { Link } from 'react-router-dom'
     import AnimatedLetters from '../AnimatedLetters'
     import './index.scss'
+    import Initial from './Initial'
+    import InitialJ from '../../assets/images/initial-j-3.png'
+    import InitialP from '../../assets/images/initial-p-3.png'
 
     const Home = () => {
       const [letterClass, setLetterClass] = useState('text-animate')
       const greetArray1 = ['H', 'i', ',']
       const greetArray2 = ['I', "'", 'm']
-      const nameArray = ['J', 'u', 'n', 'g', 'j', 'i', 'n', '', 'P', 'a', 'r', 'k']
+      const nameArray1 = ['u', 'n', 'g', 'j', 'i', 'n']
+      const nameArray2 = ['a', 'r', 'k']
       const jobArray = ['W', 'e', 'b', '', 'D', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r']
       useEffect(() => {
         setTimeout(() => {
@@ -541,11 +545,17 @@
                 strArray={greetArray2}
                 idx={12}
               />
-              &nbsp;
+              <img src={InitialJ} alt="initial j" />
               <AnimatedLetters
                 letterClass={letterClass}
-                strArray={nameArray}
+                strArray={nameArray1}
                 idx={15}
+              />
+              <img src={InitialP} alt="initial p" />
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={nameArray2}
+                idx={21}
               />
               <br />
               <AnimatedLetters
@@ -564,6 +574,46 @@
     }
 
     export default Home
+    ```
+
+- On /src/components/Home/index.scss
+
+  - ```scss
+    @keyframes wiggle {
+      0%,
+      7% {
+        transform: rotateZ(0);
+      }
+      15% {
+        transform: rotateZ(-15deg);
+      }
+      20% {
+        transform: rotateZ(10deg);
+      }
+      25% {
+        transform: rotateZ(-10deg);
+      }
+      30% {
+        transform: rotateZ(6deg);
+      }
+      35% {
+        transform: rotateZ(-4deg);
+      }
+      40%,
+      100% {
+        transform: rotateZ(0);
+      }
+    }
+    .home-page {
+      h1 {
+        img {
+          margin-left: 2rem;
+          width: 44px;
+          height: auto;
+          animation: wiggle 2s linear infinite;
+          animation-delay: 1.4s;
+        }
+      }
     ```
 
 ## Animation with GSAP
@@ -692,3 +742,4 @@
     ```
 
 - Add `<Initial />` to /src/components/Home/index.js
+
