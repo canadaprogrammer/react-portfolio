@@ -6,11 +6,17 @@
   height: 408.2px;
   position: absolute;
   top: 0;
-  right: 15%;
+  // right: 15%;
   bottom: 0;
   left: auto;
   margin: auto;
   opacity: 0;
+  &.first-container {
+    right: calc(432px + 10%);
+  }
+  &.second-container {
+    right: 10%;
+  }
   svg {
     width: 100%;
     height: auto;
@@ -28,6 +34,11 @@
     opacity: 0;
     // transform: rotateZ(30deg);
     z-index: 1;
+    &.initial-p {
+      top: 6px;
+      left: 9px;
+      width: 96%;
+    }
   }
 }
 .svg-container {
