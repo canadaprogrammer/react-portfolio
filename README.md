@@ -850,3 +850,222 @@
     ```
 
 - Add `<Initial />` to /src/components/Home/index.js
+
+## Create About Page
+
+- Create /src/components/About/index.js and /src/components/About/index.scss
+
+  - ```js
+    import './index.scss'
+    import AnimatedLetters from '../AnimatedLetters'
+    import { useEffect, useState } from 'react'
+    import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+    import {
+      faCss3,
+      faGitAlt,
+      faHtml5,
+      faJsSquare,
+      faPhp,
+      faReact,
+    } from '@fortawesome/free-brands-svg-icons'
+
+    const About = () => {
+      const [letterClass, setLetterClass] = useState('text-animate')
+
+      useEffect(() => {
+        setTimeout(() => {
+          setLetterClass('text-animate-hover')
+        }, 3000)
+      }, [])
+
+      return (
+        <div className="container about-page">
+          <div className="text-zone">
+            <h1>
+              <AnimatedLetters
+                letterClass={letterClass}
+                strArray={['A', 'b', 'o', 'u', 't', ' ', 'm', 'e']}
+                idx={15}
+              />
+            </h1>
+            <p>I am a Web Developer living in Victory, BC.</p>
+            <p>
+              Creating responsive websites, maintaining clients' homepages, and
+              applying customers' requests quickly.
+            </p>
+            <p>
+              Solving problems, organizing well, and working independently with high
+              attention to detail.
+            </p>
+            <p>
+              IRiding a bicycle, walking on the beach, and watching movies. A family
+              person and father of two lovely children.
+            </p>
+          </div>
+          <div className="stage-cube-cont">
+            <div className="cubespinner">
+              <div className="face1">
+                <FontAwesomeIcon icon={faHtml5} color="#F06529" />
+              </div>
+              <div className="face2">
+                <FontAwesomeIcon icon={faJsSquare} color="#EFD81D" />
+              </div>
+              <div className="face3">
+                <FontAwesomeIcon icon={faCss3} color="#28A4D9" />
+              </div>
+              <div className="face4">
+                <FontAwesomeIcon icon={faReact} color="#5ED4F4" />
+              </div>
+              <div className="face5">
+                <FontAwesomeIcon icon={faPhp} color="#9970FF" />
+              </div>
+              <div className="face6">
+                <FontAwesomeIcon icon={faGitAlt} color="#EC4D28" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    export default About
+    ```
+
+  - ```scss
+    .stage-cube-cont {
+      width: 50%;
+      height: 100%;
+      top: 0;
+      padding-top: 18%;
+      margin-left: 0;
+      position: absolute;
+      right: 0;
+      overflow: hidden;
+    }
+    .cubespinner {
+      animation-name: spincube;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-duration: 12s;
+      transform-style: preserve-3d;
+      transform-origin: 100px 100px 0;
+      margin-left: calc(50% - 100px);
+      div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        background: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        font-size: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px 0px lightyellow;
+      }
+      .face1 {
+        transform: translateZ(100px);
+      }
+      .face2 {
+        transform: rotateY(90deg) translateZ(100px);
+      }
+      .face3 {
+        transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+      }
+      .face4 {
+        transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+      }
+      .face5 {
+        transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
+      }
+      .face6 {
+        transform: rotateX(-90deg) translateZ(100px);
+      }
+    }
+    @keyframes spincube {
+      from,
+      to {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      }
+      16% {
+        transform: rotateY(-90deg);
+      }
+      33% {
+        transform: rotateY(-90deg) rotateZ(90deg);
+      }
+      50% {
+        transform: rotateY(-180deg) rotateZ(90deg);
+      }
+      66% {
+        transform: rotateY(-270deg) rotateZ(90deg);
+      }
+      83% {
+        transform: rotateX(90deg);
+      }
+    }
+    ```
+
+- Add About into /src/App.js
+
+  - ```js
+    import About from './components/About'
+    ...
+              <Route path="about" element={<About />} />
+              ...
+    ```
+
+- On /src/compoennts/Layout/index.scss
+
+  - ```scss
+    ...
+    .about-page {
+      .text-zone {
+        position: absolute;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 35%;
+        vertical-align: middle;
+        display: table-cell;
+        max-height: 90%;
+        h1 {
+          font-size: 53px;
+          font-family: 'Playfair Display', serif;
+          color: $mint;
+          font-weight: 700;
+          margin-top: 0;
+          position: relative;
+          margin-bottom: 40px;
+          left: 10px;
+        }
+        p {
+          font-style: 13px;
+          color: #fff;
+          font-family: sans-serif;
+          font-weight: 300;
+          min-width: fit-content;
+          animation: pulse 1s;
+          &:nth-of-type(1) {
+            animation-delay: 1.1s;
+          }
+          &:nth-of-type(2) {
+            animation-delay: 1.2s;
+          }
+          &:nth-of-type(3) {
+            animation-delay: 1.3s;
+          }
+          &:nth-of-type(4) {
+            animation-delay: 1.4s;
+          }
+          &:nth-of-type(5) {
+            animation-delay: 1.5s;
+          }
+        }
+      }
+      .text-animate-hover {
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+    ```
