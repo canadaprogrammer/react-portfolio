@@ -154,11 +154,11 @@
             <img src={Logo} alt="logo" />
           </Link>
           <nav>
-            <NavLink exact="true" activeclassname="active" to="/">
+            <NavLink end activeclassname="active" to="/">
               <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
             </NavLink>
             <NavLink
-              exact="true"
+              end
               activeclassname="active"
               className="about-link"
               to="/about"
@@ -166,7 +166,7 @@
               <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
             </NavLink>
             <NavLink
-              exact="true"
+              end
               activeclassname="active"
               className="contact-link"
               to="/contact"
@@ -1066,6 +1066,57 @@
         &:hover {
           color: #fff;
         }
+      }
+    }
+    ```
+
+## Loading Animation
+
+- On /src/components/About/index.js, Home/index.js, add `<Loader type="pacman" />`
+
+  - ```js
+    import Loader from 'react-loaders'
+    ...
+    <>
+      <div className="container about-page">
+      ...
+      </div>
+      <Loader type="pacman" />
+    </>
+    ...
+    ```
+
+- On /src/App.scss
+
+  - ```scss
+    ...
+    @import '~loaders.css/src/animations/pacman.scss';
+
+    .loader-active {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      width: 50px;
+      height: 50px;
+      animation: fadeOut 1s 1s;
+      animation-fill-mode: forwards;
+    }
+    .pacman > div {
+      &:first-of-type,
+      &:nth-child(2) {
+        border-top-color: $mint;
+        border-left-color: $mint;
+        border-bottom-color: $mint;
+      }
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5),
+      &:nth-child(6) {
+        background-color: $mint;
       }
     }
     ```
