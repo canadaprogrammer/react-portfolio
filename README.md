@@ -1120,3 +1120,148 @@
       }
     }
     ```
+
+## Contact Page
+
+- Create /src/components/Contact/index.js and index.scss
+
+  - ```js
+    import { useEffect, useState } from 'react'
+    import Loader from 'react-loaders'
+    import AnimatedLetters from '../AnimatedLetters'
+    import './index.scss'
+
+    const Contact = () => {
+      const [letterClass, setLetterClass] = useState('text-animate')
+
+      useEffect(() => {
+        setTimeout(() => {
+          setLetterClass('text-animate-hover')
+        }, 3000)
+      }, [])
+      return (
+        <>
+          <div className="container contact-page">
+            <div className="text-zone">
+              <h1>
+                <AnimatedLetters
+                  letterClass={letterClass}
+                  strArray={['C', 'o', 'n', 't', 'a', 'c', 't', ' ', 'm', 'e']}
+                  idx={15}
+                />
+              </h1>
+              <div className="contact-form">
+                <form>
+                  <ul>
+                    <li className="half">
+                      <input type="text" name="name" placeholder="Name" required />
+                    </li>
+                    <li className="half">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        required
+                      />
+                    </li>
+                    <li>
+                      <input
+                        type="text"
+                        name="subject"
+                        placeholder="Subject"
+                        required
+                      />
+                    </li>
+                    <li>
+                      <textarea
+                        name="message"
+                        placeholder="Message"
+                        required
+                      ></textarea>
+                    </li>
+                    <li>
+                      <input type="submit" className="flat-button" value="SEND" />
+                    </li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+          </div>
+          <Loader type="pacman" />
+        </>
+      )
+    }
+
+    export default Contact
+    ```
+
+  - ```scss
+    @import '../../default.scss';
+
+    .contact-form {
+      width: 100%;
+      margin-top: 20px;
+      ul {
+        padding: 0;
+        margin: 0;
+        li {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          margin-bottom: 10px;
+          overflow: hidden;
+          display: block;
+          position: relative;
+          opacity: 0;
+          animation: fadeInUp 2s 2s;
+          animation-fill-mode: forwards;
+          clear: both;
+          &.half {
+            width: 49%;
+            margin-left: 2%;
+            float: left;
+            clear: none;
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+    input[type='text'],
+    input[type='email'] {
+      width: 100%;
+      border: 0;
+      background-color: $purple-1;
+      height: 50px;
+      font-size: 16px;
+      color: #fff;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: 100%;
+      border: 0;
+      background-color: $purple-1;
+      font-size: 16px;
+      color: #fff;
+      padding: 20px;
+      min-height: 150px;
+      box-sizing: border-box;
+    }
+    .flat-button {
+      color: $mint;
+      background: 0 0;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-decoration: none;
+      padding: 8px 10px;
+      border: 1px solid $mint;
+      float: right;
+      border-radius: 4px;
+    }
+    ```
+
+- On /src/App.js, add `Route path="contact" element={<Contact />} />`
+
+- On /src/components/Layout/index.scss, change `.about-page` to `.about-page, .contact-page`
