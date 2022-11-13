@@ -1265,3 +1265,66 @@
 - On /src/App.js, add `Route path="contact" element={<Contact />} />`
 
 - On /src/components/Layout/index.scss, change `.about-page` to `.about-page, .contact-page`
+
+### Send Email
+
+- Create free account on emailjs.com
+  - Add New Service and copy the service ID
+  - Create New Template and copy the template ID
+  - Copy the public key from Account
+
+- Create .env and create variables to keep the key and IDs
+  - The variables need to start `REACT_APP_`
+
+- Add `.env` to `.gitignore`
+
+- Copy the script from https://www.emailjs.com/docs/sdk/installation/, and paste it into `/public/index.html`
+
+  - ```js
+    ...
+      <script type="text/javascript"
+          src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+      </script>
+      <script type="text/javascript">
+        (function(){
+            emailjs.init("%REACT_APP_EMAILJS_PUBLIC_KEY%");
+        })();
+      </script>
+    </body>
+    ```
+
+- On src/components/Contact/index.js
+
+  - ```js
+    import emailjs from '@emailjs/browser'
+    import { ..., useRef } from 'react'
+    ...
+
+    const Contact = () => {
+      const refForm = useRef()
+      ...
+      const sendEmail = (e) => {
+        e.preventDefault()
+        emailjs
+          .sendForm(
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+            refForm.current,
+            process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+          )
+          .then(
+            (response) => {
+              alert('Message successfully sent!')
+              window.location.reload(false)
+            },
+            (error) => {
+              alert('Failed to send the message. Please try again')
+              console.log('FAILED...', error)
+            }
+          )
+      }
+      return (
+        ...
+                <form ref={refForm} onSubmit={sendEmail}>
+                ...
+      )
