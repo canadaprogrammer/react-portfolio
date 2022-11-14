@@ -1328,3 +1328,85 @@
                 <form ref={refForm} onSubmit={sendEmail}>
                 ...
       )
+
+### Add Map
+
+- Added below code into the `<head>` on /public/index.html
+
+  - ```html
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
+    />
+    ```
+
+- On /src/components/Contact/index.js
+
+  - ```js
+    <div className="text-zone">...</div>
+    <div className="info-map">
+      Jungjin Park
+      <br />
+      3220 Quadra St.
+      <br />
+      Victoria, BC
+      <br />
+      Canada
+      <br />
+      <span>jinpark1504@gmail.com</span>
+    </div>
+    <div className="map-wrap">
+      <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position}>
+          <Popup>Jin lives here, come over for a cup of coffee</Popup>
+        </Marker>
+      </MapContainer>
+    </div>
+    ```
+
+- On /src/components/Contact/index.scss
+
+  - ```scss
+    .info-map {
+      position: absolute;
+      background-color: #000;
+      top: 50px;
+      right: 30%;
+      z-index: 9999;
+      width: 267px;
+      padding: 20px;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeIn 1s 1.5s;
+      animation-fill-mode: forwards;
+      span {
+        font-size: 16px;
+        display: block;
+        padding-top: 20px;
+        color: $mint;
+      }
+    }
+    .map-wrap {
+      background-color: $purple-1;
+      float: right;
+      width: 53%;
+      height: 100%;
+    }
+    .leaflet-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      opacity: 0;
+      animation: backInRight 1s 1.2s;
+      animation-fill-mode: forwards;
+    }
+    ```
