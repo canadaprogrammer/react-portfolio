@@ -1410,3 +1410,69 @@
       animation-fill-mode: forwards;
     }
     ```
+
+## Portfolio Page
+
+- Create /src/components/Portfolio/index.js and /src/components/Portfolio/index.scss
+
+  - ```js
+    import { useEffect, useState } from 'react'
+    import Loader from 'react-loaders'
+    import AnimatedLetters from '../AnimatedLetters'
+    import './index.scss'
+
+    const Portfolio = () => {
+      const [letterClass, setLetterClass] = useState('text-animate')
+
+      useEffect(() => {
+        setTimeout(() => {
+          setLetterClass('text-animate-hover')
+        }, 4000)
+      }, [])
+      return (
+        <>
+          <div className="container portfolio-page">
+            <div className="text-zone">
+              <h1 className="page-title">
+                <AnimatedLetters
+                  letterClass={letterClass}
+                  strArray={'Portfolio'.split('')}
+                  idx={15}
+                />
+              </h1>
+            </div>
+          </div>
+          <Loader type="pacman" />
+        </>
+      )
+    }
+
+    export default Portfolio
+    ```
+
+- On /src/App.js, add `<Route path="portfolio" element={<Portfolio />} />`
+
+- On /src/component/Sidebar/index.js
+
+  - ```js
+    <NavLink
+      end
+      activeclassname="active"
+      className="portfolio-link"
+      to="/portfolio"
+    >
+      <FontAwesomeIcon icon={faFolderTree} color="#4d4d4e" />
+    </NavLink>
+    ```
+
+- On /src/component/Sidebar/index.scss
+
+  - ```scss
+    &.portfolio-link {
+      &::after {
+        content: 'PORTFOLIO';
+      }
+    }
+    ```
+
+- Add `.portfolio-page` to /src/component/Layout/index.scss

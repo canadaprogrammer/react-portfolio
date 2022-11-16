@@ -61,17 +61,22 @@
         opacity: 0;
         transition: all 0.4s ease-out;
       }
-      &:first-child {
+      &.home-link {
         &::after {
           content: 'HOME';
         }
       }
-      &:nth-child(2) {
+      &.about-link {
         &::after {
           content: 'ABOUT';
         }
       }
-      &:last-child {
+      &.portfolio-link {
+        &::after {
+          content: 'PORTFOLIO';
+        }
+      }
+      &.contact-link {
         &::after {
           content: 'CONTACT';
         }
