@@ -1,0 +1,16 @@
+{
+  "portfolio": [
+    {
+      "cover": "/case_study/1/stmarks.jpg",
+      "title": "St. Mark's Anglican Church",
+      "description": "Donation Management System / Website",
+      "url": "https://stmarksnotl.org/"
+    },
+    {
+      "cover": "/case_study/1/stmarks.jpg",
+      "title": "St. Mark's Anglican Church",
+      "description": "Donation Management System / Website",
+      "url": "https://stmarksnotl.org/"
+    }
+  ]
+}
