@@ -11,7 +11,7 @@ const Portfolio = () => {
       <div className="images-container">
         {portfolio.map((data, idx) => {
           return (
-            <div className="image-box" key={idx}>
+            <div className={'image-box ' + data.category} key={idx}>
               <img
                 src={data.cover}
                 className="portfolio-image"
